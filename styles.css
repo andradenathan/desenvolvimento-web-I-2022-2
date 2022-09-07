@@ -2,6 +2,14 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
+body {
+    background-color: #c0c9d3ee;
+}
+
+a {
+    text-decoration: none;
+}
+
 table {
     border-collapse: collapse;
     width: 80%;
