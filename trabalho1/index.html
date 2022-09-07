@@ -1,5 +1,5 @@
 <!--
-    Desenvolvimento Web 2022/2
+    Ciência da Computação UFRJ - Desenvolvimento Web 2022.2
     Aluno: Nathan Andrade dos Santos Lobo
     DRE: 120082390
 -->
@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <title>Java - Programming Language</title>
 </head>
@@ -62,14 +63,17 @@
                     </a>
                     <h3 class="java-creator-text subtitle name">James Gosling</h3>
                     <h3 class="java-creator-text subtitle role">Java Creator</h3>
-                    <p class="java-creator-text subtitle role">He created Java at Suns Microsystems, 1995.</p>
-                    <br/>
+                    <p class="java-creator-text subtitle details">
+                        He created Java at Suns Microsystems, 1995.
+                        <br/>
+                        <br/>
+                        Now he is working at Amazon as Distinguished Engineer.
+                    </p>
                 </div>
-                <div class="test">
-                    <h2 class="abc">Code Example - Hello, World</h2>
-                    <div class="test2">
-                        
-                        <code class="teste4">
+                <div class="container-border-around">
+                    <h2>Code Example - Hello, World</h2>
+                    <div class="container-border-code">
+                        <code>
                             <span style="color: #c627f7">public class</span> <span style="color: blue">Main</span> {
                                 <br/>
                                 <span style="margin-left: 10px">
@@ -95,10 +99,32 @@
             <hr/>
             <section>
             <div>
-                <h2>Java Popularity</h2>
+                <h2>Why Java is so Popular?</h2>
+                <div class="container-top-text">
+                    <p>
+                        The open-source approach helps Java to improve the code and deliver 
+                        more enhancements and bug fixes than can be done by a single organization with limited resources. 
+                        <br/>
+                        <br/>
+                        As a result, the code is being developed and released rapidly, especially after moving to a new release model. 
+                        The long-time support versions are set to come out every two years.
+                        <br/>
+                        <br/>
+                        The Java frameworks in the ecosystem allow for easier development of particular applications; among them are Spring Boot, Quarkus, Micronaut and many more.
+                        <br/>
+                        The enhancements the platform implemented in recent years include lambdas, 
+                        type inference, pattern matching and records. 
+                        These innovations brought the syntax of the language closer to competitors in terms of convenience 
+                        while not decreasing in safety—it is still a strong statically typed 
+                        language—and still allowing you to use the most productive managed runtime in the industry.
+                    </p>
+                </div>
+                <br/>
+
+                <h3>Ranking of Popularity</h3>
                 <table>
                     <tr>
-                        <th>Ranking Name</th>
+                        <th>Name</th>
                         <th>Position</th>
                         <th>Country</th>
                         <th>Year</th>
@@ -191,7 +217,7 @@
 <script>
     const wora = document.getElementById('wora');
     wora.addEventListener('click', () => {
-        alert(" Write once, run everywhere (WORE), was a 1995 slogan created by Sun Microsystems");
+        alert("Write once, run anywhere (WORA), was a 1995 slogan created by Sun Microsystems");
     });
 </script>
 </html>
