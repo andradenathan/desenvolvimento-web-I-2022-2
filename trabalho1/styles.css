@@ -1,10 +1,18 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .container {
     width: 100%;
     height: 100%;
 }
 
 h2 {
-    margin-left: 3%;
+    margin-left: 1%;
+}
+
+h3 {
+    margin-left: 2%;
 }
 
 .container-top-text {
@@ -13,4 +21,68 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+
+
+
+.test {
+    width: 50%;
+}
+
+.test2 {
+    max-width: 60%;
+    width: 50%;
+    border: 10px solid gray;
+    padding: 50px;
+}
+
+.test4 {
+    text-align: center;
+}
+
+.container-top {
+    width: 80%;
+    margin-left: 2%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.java-creator {
+    width: 212px;
+    background-color: antiquewhite;
+}
+
+.java-creator-text {
+    display: flex;
+    margin-left: 3%;
+}
+
+.java-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtitle {
+    text-align: center;
+}
+
+.role {
+    font-size: 14px;
+}
+
+.name {
+    font-size: 18px;
+    text-align: center;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+    border: 1.5px solid #000;
+    border-radius: 50%;
+    margin-left: 1.5%;
 }
