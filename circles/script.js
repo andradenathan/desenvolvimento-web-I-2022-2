@@ -87,10 +87,20 @@ function main() {
 }
 
 renderCircleInput.addEventListener("keypress", (event) => {
+    if(parseInt(event.target.value) < 0) {
+        renderCircleInputButton.disabled = true;
+        return alert("Valor inválido");
+    }
+    renderCircleInputButton.disabled = false;
     if(event.key === "Enter") return main();
 });
 
 renderCircleInputButton.addEventListener("click", (event) => {
+    if(parseInt(event.target.value) < 0) {
+        renderCircleInputButton.disabled = true;
+        return alert("Valor inválido");
+    }
+    renderCircleInputButton.disabled = false;
     return main();
 });
 
