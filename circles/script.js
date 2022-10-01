@@ -1,9 +1,13 @@
-const INPUT_MAX = window.prompt("Insira o limite máximo de círculos: ");
 let CIRCLES_MIN = 1;
 
 const circleContainer = document.createElement("div");
 circleContainer.style.display = "flex";
 circleContainer.style.flexWrap = "wrap";
+
+const renderCircleHeader = document.createElement("div");
+renderCircleHeader.style.display = "flex";
+renderCircleHeader.style.justifyContent = "center";
+renderCircleHeader.style.alignItems = "center";
 
 const renderCircleContainer = document.createElement("div");
 renderCircleContainer.style.display = "flex";
@@ -13,15 +17,16 @@ renderCircleContainer.style.width = "100%";
 renderCircleContainer.style.height = "100%";
 
 const renderCircleInput = document.createElement("input");
-renderCircleInput.type = "range";
-renderCircleInput.value = CIRCLES_MIN;
-renderCircleInput.min = CIRCLES_MIN;
-renderCircleInput.max = INPUT_MAX;
+renderCircleInput.style.marginRight = "10px";
+renderCircleInput.placeholder = "Quantidade de círculos";
+
+
+const renderCircleInputButton = document.createElement("button");
+renderCircleInputButton.style.marginRight = "10px";
+renderCircleInputButton.textContent = "Gerar";
 
 const renderCircleCount = document.createElement("h3");
-renderCircleContainer.style.display = "flex";
-renderCircleContainer.style.justifyContent = "center";
-renderCircleContainer.style.alignItems = "center";
+
 renderCircleCount.textContent = "Quantidade de Circulos: " + CIRCLES_MIN;
 
 const circles = [];
@@ -40,8 +45,8 @@ function generateRandomCircles() {
     const circle = document.createElement('div');
     const color = generateRandomHexaColors();
     
-    if(circles.length > 0) {
-        circles.every(circle => circle.style.backgroundColor === color) ? 
+    if(circles.length > 1) {
+        circles.every(circle => circle.style.backgroundColor === color || circle.style.backgroundColor === "#FFFFFF") ? 
         generateRandomHexaColors() : color;
     }
     
@@ -53,8 +58,8 @@ function generateRandomCircles() {
     circles.push(circle);
 }
 
-function renderCircle(event) {
-    CIRCLES_MIN = event.target.value - 1;
+function renderCircle(value) {
+    CIRCLES_MIN = value;
     for (let index = 0; index < CIRCLES_MIN; index++) {
         generateRandomCircles();
     }    
@@ -74,18 +79,28 @@ function removeAllChilds() {
     circleContainer.append(...circles);
 }
 
-renderCircleInput.addEventListener("change", (event) => {
-    if(!circleContainer.hasChildNodes()) renderCircle(event);
-    
+function main() {
+    if(!circleContainer.hasChildNodes()) renderCircle(renderCircleInput.value);
+
+    renderCircleInput.disabled = false;
     removeAllChilds();
-    renderCircle(event);
+    renderCircle(renderCircleInput.value);
     return;
+}
+
+renderCircleInput.addEventListener("keypress", (event) => {
+    if(event.key === "Enter") return main();
 });
 
+renderCircleInputButton.addEventListener("click", (event) => {
+    return main();
+});
 
 generateRandomCircles();
 renderCircleContainer.appendChild(renderCircleInput);
+renderCircleContainer.appendChild(renderCircleInputButton);
 renderCircleContainer.appendChild(renderCircleCount);
+renderCircleHeader.appendChild(renderCircleContainer);
 circleContainer.append(...circles);
-document.body.appendChild(renderCircleContainer);
+document.body.appendChild(renderCircleHeader);
 document.body.appendChild(circleContainer);
