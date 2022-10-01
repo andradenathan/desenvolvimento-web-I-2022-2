@@ -1,6 +1,9 @@
-const INPUT_MIN = 1;
-const INPUT_MAX = 100;
-let CIRCLES_COUNT = INPUT_MIN;
+const INPUT_MAX = window.prompt("Insira o limite máximo de círculos: ");
+let CIRCLES_MIN = 1;
+
+const circleContainer = document.createElement("div");
+circleContainer.style.display = "flex";
+circleContainer.style.flexWrap = "wrap";
 
 const renderCircleContainer = document.createElement("div");
 renderCircleContainer.style.display = "flex";
@@ -11,18 +14,15 @@ renderCircleContainer.style.height = "100%";
 
 const renderCircleInput = document.createElement("input");
 renderCircleInput.type = "range";
-renderCircleInput.value = INPUT_MIN;
-renderCircleInput.min = INPUT_MIN;
+renderCircleInput.value = CIRCLES_MIN;
+renderCircleInput.min = CIRCLES_MIN;
 renderCircleInput.max = INPUT_MAX;
 
 const renderCircleCount = document.createElement("h3");
 renderCircleContainer.style.display = "flex";
 renderCircleContainer.style.justifyContent = "center";
 renderCircleContainer.style.alignItems = "center";
-renderCircleCount.textContent = "Circulos: " + CIRCLES_COUNT.toString();
-
-const circleContainer = document.createElement("div");
-circleContainer.style.display = "flex";
+renderCircleCount.textContent = "Quantidade de Circulos: " + CIRCLES_MIN;
 
 const circles = [];
 
@@ -53,17 +53,34 @@ function generateRandomCircles() {
     circles.push(circle);
 }
 
-renderCircleInput.addEventListener("change", (event) => {
-    CIRCLES_COUNT = event.target.value;
-    
-    for (let index = 0; index < CIRCLES_COUNT; index++) {
+function renderCircle(event) {
+    CIRCLES_MIN = event.target.value - 1;
+    for (let index = 0; index < CIRCLES_MIN; index++) {
         generateRandomCircles();
     }    
+
     circleContainer.append(...circles);
+    renderCircleCount.textContent = "Quantidade de Circulos: " + CIRCLES_MIN;
+}
 
-    renderCircleCount.textContent = "Circulos: " + event.target.value.toString();
+function removeAllChilds() {
+    while (circleContainer.firstChild) 
+        circleContainer.removeChild(circleContainer.firstChild);
+
+    circles.splice(0, circles.length);
+    CIRCLES_MIN = 1;
+
+    generateRandomCircles();
+    circleContainer.append(...circles);
+}
+
+renderCircleInput.addEventListener("change", (event) => {
+    if(!circleContainer.hasChildNodes()) renderCircle(event);
+    
+    removeAllChilds();
+    renderCircle(event);
+    return;
 });
-
 
 
 generateRandomCircles();
