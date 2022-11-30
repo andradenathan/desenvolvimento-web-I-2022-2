@@ -6,7 +6,6 @@ CREATE TABLE candidato(
     titulo VARCHAR(127) NOT NULL,
     partido VARCHAR(100) NOT NULL,
     foto VARCHAR(31) NOT NULL,
-    numero INT NOT NULL,
     votos INT NOT NULL DEFAULT 0,
     PRIMARY KEY (numero)  
 );
