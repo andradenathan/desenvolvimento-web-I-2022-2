@@ -18,7 +18,7 @@ var etapas = null
 var numeroDigitado = ''
 var votoEmBranco = false
 
-ajax('etapas.json', 'GET', (response) => {
+ajax('http://localhost:8000/Candidates.php', 'GET', (response) => {
   etapas = JSON.parse(response)
   console.log(etapas)
 
@@ -68,6 +68,20 @@ function comecarEtapa() {
   }
 
   rCargo.innerHTML = etapa['titulo']
+}
+
+function registrarVotos() {
+  let request = new XMLHttpRequest();
+  request.overrideMimeType("application/json");
+  request.open('POST', 'http://localhost:8000/Votes.php', true);
+  request.setRequestHeader('Content-type', 'JSON');
+  request.send(JSON.stringify({'votos': votos}));
+  console.log(JSON.stringify({'votos': votos}));
+  request.onreadystatechange = () => {
+    if (request.readyState === 4 && request.status !== 200) {
+        console.log("Erro: " + request.responseText);
+    }
+  }
 }
 
 /**
@@ -224,8 +238,10 @@ function confirmar() {
   if (etapas[etapaAtual + 1]) {
     etapaAtual++
   } else {
+    registrarVotos();
     document.querySelector('.tela').innerHTML = `
       <div class="fim">FIM</div>
+      </br>
     `
   }
 

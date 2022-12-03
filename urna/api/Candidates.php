@@ -2,10 +2,12 @@
 
 require './vendor/autoload.php';
 
+include("./cors.php");
+
 const VEREADOR = "vereador";
 const PREFEITO = "prefeito";
 
-function recuperaPrefeitos(): array {    
+function recuperarPrefeitos(): array {    
     $query = "SELECT * FROM candidato INNER JOIN vice ON candidato.numero = vice.numero WHERE titulo = 'prefeito'";
     $queryResponse = acessarDados($query);
 
@@ -24,12 +26,11 @@ function recuperaPrefeitos(): array {
         $prefeitos['candidatos'][$data[0]]['vice']['foto'] = $data[8];
         $data = $queryResponse->fetch_row();
     } while(!is_null($data));
-    
-    echo json_encode($prefeitos);
-    return [];
+
+    return $prefeitos;
 }
 
-function recuperaVereadores(): array {    
+function recuperarVereadores(): array {    
     $query = "SELECT numero, nome, partido, titulo, foto FROM candidato WHERE titulo = 'vereador'";
     $queryResponse = acessarDados($query);
 
@@ -61,4 +62,9 @@ function acessarDados(string $query): \mysqli_result {
     return $queryResponse;
 }
 
-recuperaPrefeitos();
+$candidatos["0"] = recuperarVereadores();
+$candidatos["1"] = recuperarPrefeitos();
+
+cors();
+
+echo json_encode($candidatos);
