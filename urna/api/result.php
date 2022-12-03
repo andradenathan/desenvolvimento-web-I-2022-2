@@ -9,7 +9,6 @@ echo ("
 ");
 
 exibirResultado();
-
 zerarVotacao();
 
 echo("</div>");
